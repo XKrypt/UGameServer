@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "IfwTLgmWNzURUHi7ucS+2cdr51wE7cidF7wuYVimsFKcnMEGcR/KiS3Wykb1y9+VFCqiOQriACwus5hughhlgg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Fhayha\\source\\repos\\UGameServer\\UGameServer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Fhayha\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

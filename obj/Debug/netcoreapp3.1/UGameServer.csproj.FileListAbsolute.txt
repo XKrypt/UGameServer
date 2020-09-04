@@ -1,0 +1,15 @@
+C:\Users\Fhayha\source\repos\UGameServer\obj\Debug\netcoreapp3.1\UGameServer.csprojAssemblyReference.cache
+C:\Users\Fhayha\source\repos\UGameServer\obj\Debug\netcoreapp3.1\UGameServer.AssemblyInfoInputs.cache
+C:\Users\Fhayha\source\repos\UGameServer\obj\Debug\netcoreapp3.1\UGameServer.AssemblyInfo.cs
+C:\Users\Fhayha\source\repos\UGameServer\bin\Debug\netcoreapp3.1\UGameServer.exe
+C:\Users\Fhayha\source\repos\UGameServer\bin\Debug\netcoreapp3.1\UGameServer.deps.json
+C:\Users\Fhayha\source\repos\UGameServer\bin\Debug\netcoreapp3.1\UGameServer.runtimeconfig.json
+C:\Users\Fhayha\source\repos\UGameServer\bin\Debug\netcoreapp3.1\UGameServer.runtimeconfig.dev.json
+C:\Users\Fhayha\source\repos\UGameServer\bin\Debug\netcoreapp3.1\UGameServer.dll
+C:\Users\Fhayha\source\repos\UGameServer\bin\Debug\netcoreapp3.1\UGameServer.pdb
+C:\Users\Fhayha\source\repos\UGameServer\obj\Debug\netcoreapp3.1\UGameServer.dll
+C:\Users\Fhayha\source\repos\UGameServer\obj\Debug\netcoreapp3.1\UGameServer.pdb
+C:\Users\Fhayha\source\repos\UGameServer\obj\Debug\netcoreapp3.1\UGameServer.genruntimeconfig.cache
+C:\Users\Fhayha\source\repos\UGameServer\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Fhayha\source\repos\UGameServer\obj\Debug\netcoreapp3.1\UGameServer.csproj.CoreCompileInputs.cache
+C:\Users\Fhayha\source\repos\UGameServer\obj\Debug\netcoreapp3.1\UGameServer.csproj.CopyComplete
