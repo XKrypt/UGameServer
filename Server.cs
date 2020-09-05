@@ -249,14 +249,16 @@ namespace UGameServer
                                 {
                                     if (player.isUsed)
                                     {
-                                        //TriggerEvent and send id of player
-                                        player.SendEventResult(new EventTrigger()
+                                    Clients _clients = new Clients();
+                                    _clients.clients = GetAllUsersFromRoom(rooms[x]);
+                                    //TriggerEvent and send id of player
+                                    player.SendEventResult(new EventTrigger()
                                         {
 
                                             _event = ResultEvent.UserEnterInRoom,
-                                            eventResultResponse = ID.ToString()
+                                            eventResultResponse = JsonConvert.SerializeObject(_clients)
 
-                                        });
+                                        });;
                                     }
                                     else
                                     {

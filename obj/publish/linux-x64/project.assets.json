@@ -11,6 +11,17 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       }
+    },
+    ".NETCoreApp,Version=v3.1/linux-x64": {
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      }
     }
   },
   "libraries": {
@@ -61,7 +72,7 @@
       "projectName": "UGameServer",
       "projectPath": "C:\\Users\\Fhayha\\Documents\\GitHub\\UGameServer\\UGameServer.csproj",
       "packagesPath": "C:\\Users\\Fhayha\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Fhayha\\Documents\\GitHub\\UGameServer\\obj\\",
+      "outputPath": "C:\\Users\\Fhayha\\Documents\\GitHub\\UGameServer\\obj\\publish\\linux-x64\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Fhayha\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -103,12 +114,23 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[3.1.7, 3.1.7]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+      }
+    },
+    "runtimes": {
+      "linux-x64": {
+        "#import": []
       }
     }
   }

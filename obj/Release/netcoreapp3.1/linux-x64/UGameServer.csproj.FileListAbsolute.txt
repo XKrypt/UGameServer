@@ -1,0 +1,14 @@
+C:\Users\Fhayha\Documents\GitHub\UGameServer\bin\Release\netcoreapp3.1\linux-x64\UGameServer
+C:\Users\Fhayha\Documents\GitHub\UGameServer\bin\Release\netcoreapp3.1\linux-x64\UGameServer.deps.json
+C:\Users\Fhayha\Documents\GitHub\UGameServer\bin\Release\netcoreapp3.1\linux-x64\UGameServer.runtimeconfig.json
+C:\Users\Fhayha\Documents\GitHub\UGameServer\bin\Release\netcoreapp3.1\linux-x64\UGameServer.runtimeconfig.dev.json
+C:\Users\Fhayha\Documents\GitHub\UGameServer\bin\Release\netcoreapp3.1\linux-x64\UGameServer.dll
+C:\Users\Fhayha\Documents\GitHub\UGameServer\bin\Release\netcoreapp3.1\linux-x64\UGameServer.pdb
+C:\Users\Fhayha\Documents\GitHub\UGameServer\bin\Release\netcoreapp3.1\linux-x64\Newtonsoft.Json.dll
+C:\Users\Fhayha\Documents\GitHub\UGameServer\obj\Release\netcoreapp3.1\linux-x64\UGameServer.AssemblyInfoInputs.cache
+C:\Users\Fhayha\Documents\GitHub\UGameServer\obj\Release\netcoreapp3.1\linux-x64\UGameServer.AssemblyInfo.cs
+C:\Users\Fhayha\Documents\GitHub\UGameServer\obj\Release\netcoreapp3.1\linux-x64\UGameServer.csproj.CoreCompileInputs.cache
+C:\Users\Fhayha\Documents\GitHub\UGameServer\obj\Release\netcoreapp3.1\linux-x64\UGameServer.csproj.CopyComplete
+C:\Users\Fhayha\Documents\GitHub\UGameServer\obj\Release\netcoreapp3.1\linux-x64\UGameServer.dll
+C:\Users\Fhayha\Documents\GitHub\UGameServer\obj\Release\netcoreapp3.1\linux-x64\UGameServer.pdb
+C:\Users\Fhayha\Documents\GitHub\UGameServer\obj\Release\netcoreapp3.1\linux-x64\UGameServer.genruntimeconfig.cache

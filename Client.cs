@@ -244,14 +244,14 @@ namespace UGameServer
             else if (command == Command.JoinInRoom)
             {
 
-                onClientNeedToJoinRoom?.Invoke(id, serverComunication.parameters);
                 updateClients?.Invoke(room);
+                onClientNeedToJoinRoom?.Invoke(id, serverComunication.parameters);
 
             }
             else if (command == Command.ExitRoom)
             {
-                onClientNeedToExitRoom?.Invoke(id,room.RoomName);
                 updateClients?.Invoke(room);
+                onClientNeedToExitRoom?.Invoke(id,room.RoomName);
             }
 
         }
