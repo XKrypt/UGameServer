@@ -35,7 +35,8 @@ namespace UGameServer
         Event,
         ConnectionID,
         UpdateClientsInfo,
-        UpdateRooms
+        UpdateRooms,
+        InfoMessage
     }
 
     public enum ResultEvent
@@ -148,4 +149,12 @@ namespace UGameServer
     {
         public List<ClientInfo> clients;
     }
+}
+
+
+public struct MessageInfo
+{
+    public string message;
+
+    public int id;
 }

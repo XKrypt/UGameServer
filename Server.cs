@@ -85,6 +85,7 @@ namespace UGameServer
                     clients[i].onClientChangeVar += TriggerVariableChange;
                     clients[i].onClientNeedToJoinRoom += AddPlayerToRoom;
                     clients[i].updateClients += UpdateInfoFromUserInRoom;
+                    clients[i].onMessageInfo += OnMessageInfo;
                     clients[i].isUsed = true;
                     clients[i].Connect(_client);
 
@@ -269,7 +270,7 @@ namespace UGameServer
                                 break;
                             }
                         }
-
+                    
 
                     UpdateRooms();
 
@@ -489,6 +490,16 @@ namespace UGameServer
                 }
         }
 
+
+        private void OnMessageInfo(MessageInfo message)
+        {
+            foreach (var _client in  clients)
+            {
+                if (_client.Value.getID() == message.id) {
+                    _client.Value.SendMessageInfo(message.message, message.id);
+                }
+            }
+        }
 
         private void DisconnectClient(int id)
         {

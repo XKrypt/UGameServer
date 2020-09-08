@@ -198,6 +198,32 @@ namespace UGameServer
         }
 
 
+        public void SendMessageInfo(string message, int id)
+        {
+
+            //Create User Variable
+            MessageInfo messageInfo = new MessageInfo()
+            {
+                message = message,
+                id = id
+            };
+
+            //Serialize to json
+            string var = JsonConvert.SerializeObject(messageInfo);
+
+            //Serialize Comunication to Json
+            ServerComunication serverComunication = new ServerComunication()
+            {
+                command = Enum.GetName(typeof(Command), Command.InfoMessage),
+                parameters = JsonConvert.SerializeObject(messageInfo)
+            };
+            //Send
+            Send(JsonConvert.SerializeObject(serverComunication));
+           
+
+        }
+
+
         public delegate void OnClientDisconnect(int ID);
 
         public OnClientDisconnect onClientDisconnect;
@@ -222,6 +248,10 @@ namespace UGameServer
 
         public UpdateClientsInfo updateClients;
 
+        public delegate void OnMessageInfo(MessageInfo message);
+
+        public OnMessageInfo onMessageInfo;
+
 
         private void CommandExecuter(ServerComunication serverComunication)
         {
@@ -244,14 +274,19 @@ namespace UGameServer
             else if (command == Command.JoinInRoom)
             {
 
-                updateClients?.Invoke(room);
                 onClientNeedToJoinRoom?.Invoke(id, serverComunication.parameters);
+                updateClients?.Invoke(room);
 
             }
             else if (command == Command.ExitRoom)
             {
-                updateClients?.Invoke(room);
                 onClientNeedToExitRoom?.Invoke(id,room.RoomName);
+                updateClients?.Invoke(room);
+            }else if(command == Command.InfoMessage)
+            {
+                MessageInfo message = JsonConvert.DeserializeObject<MessageInfo>(serverComunication.parameters);
+
+                onMessageInfo?.Invoke(message);
             }
 
         }
