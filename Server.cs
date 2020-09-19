@@ -105,63 +105,66 @@ namespace UGameServer
 
         private void UDPCallBack(IAsyncResult result)
         {
-           
-            IPEndPoint _clientEndPoint = new IPEndPoint(IPAddress.Any, 0);
 
-            byte[] _data = udpListener.EndReceive(result, ref _clientEndPoint);
-            
-            string msg = Encoding.UTF8.GetString(_data);
-            Packet package = new Packet(_data);
-            Console.WriteLine("UDP Received");
             try
             {
-               //ThreadManager.ExecuteOnMainThread(() => {
-                    UDPClientIdentity uDPClientIdentity = JsonConvert.DeserializeObject<UDPClientIdentity>(package.GetData());
+                IPEndPoint _clientEndPoint = new IPEndPoint(IPAddress.Any, 0);
 
+                byte[] _data = udpListener.EndReceive(result, ref _clientEndPoint);
+                string msg = Encoding.UTF8.GetString(_data);
+                Packet package = new Packet(_data);
 
-
-                if (!clients[uDPClientIdentity.id].isUsed)
+                Console.WriteLine("UDP Received");
+                UDPClientIdentity uDPClientIdentity = JsonConvert.DeserializeObject<UDPClientIdentity>(package.GetData());
+                ThreadManager.ExecuteOnMainThread(() =>
                 {
 
-                    return;
-                }
 
-                if (clients[uDPClientIdentity.id].udpClient == null)
-                {
-                    Console.WriteLine("added" + _clientEndPoint.Address.ToString());
-                    clients[uDPClientIdentity.id].udpClient = _clientEndPoint;
 
-                }
-                if (uDPClientIdentity.content == "Connect")
-                {
+                    if (clients[uDPClientIdentity.id].isUsed)
+                    {
 
-                    string confirm = CommandPackager.PackCommand(
 
-                   new ServerComunication()
-                   {
-                       command = Interpreter.PackComandType(Command.ConnectionID),
-                       parameters = "Conected"
-                   });
 
-                    Packet confirmPackege = new Packet(confirm);
-                    udpListener.BeginSend(confirmPackege.writeData(), confirmPackege.writeData().Length, _clientEndPoint.Address.ToString(), _clientEndPoint.Port, null, null);
-                    
-                }
-                    if (uDPClientIdentity.content != "Connect") {
-                        SendUDPTrafficVar(package.GetData(), uDPClientIdentity.id);
+                        if (clients[uDPClientIdentity.id].udpClient == null)
+                        {
+                            Console.WriteLine("added" + _clientEndPoint.Address.ToString());
+                            clients[uDPClientIdentity.id].udpClient = _clientEndPoint;
+
+                        }
+                        if (uDPClientIdentity.content == "Connect")
+                        {
+
+                            string confirm = CommandPackager.PackCommand(
+
+                           new ServerComunication()
+                           {
+                               command = Interpreter.PackComandType(Command.ConnectionID),
+                               parameters = "Conected"
+                           });
+
+                            Packet confirmPackege = new Packet(confirm);
+                            udpListener.BeginSend(confirmPackege.writeData(), confirmPackege.writeData().Length, _clientEndPoint.Address.ToString(), _clientEndPoint.Port, null, null);
+
+                        }
+                        if (uDPClientIdentity.content != "Connect")
+                        {
+                            SendUDPTrafficVar(package.GetData(), uDPClientIdentity.id);
+                        }
+
+
                     }
-                    udpListener.BeginReceive(UDPCallBack, null);
-               //});
+                });
 
             }
             catch (Exception e)
             {
-                Console.WriteLine("error \n " + e  );
+                Console.WriteLine("error \n " + e);
             }
-          
-                
+            udpListener.BeginReceive(UDPCallBack, null);
 
-           
+
+
 
 
 
@@ -171,7 +174,7 @@ namespace UGameServer
 
         public void SendUDPTrafficVar(string value, int id)
         {
-            Console.WriteLine("Sending");
+            
             string data = CommandPackager.PackCommand(
 
                 new ServerComunication()
@@ -192,18 +195,28 @@ namespace UGameServer
             }
 
 
-            Room room = clients[id].room;
+       
 
-            foreach (var item in clients[id].room.clientsInRoom)
+
+
+            for (int x = 0; x < rooms.Count; x++)
             {
 
-                if (item.udpClient == null)
-                {
-                    continue;
-                }
-                Console.WriteLine("Sending To id :" + id);
-               
-                udpListener.BeginSend(package.writeData(), package.writeData().Length, item.udpClient.Address.ToString(), item.udpClient.Port, null,null);
+              
+                    foreach (var item in clients)
+                    {
+
+                        if (item.Value.udpClient != null)
+                        {
+                            Console.WriteLine("Send User var from Id : " + id );
+                            
+                            udpListener.BeginSend(package.writeData(), package.writeData().Length, item.Value.udpClient.Address.ToString(), item.Value.udpClient.Port, null, null);
+                        }
+                       
+                    }
+
+                                  
+
             }
 
 
@@ -211,7 +224,7 @@ namespace UGameServer
 
 
 
-        }
+            }
 
         //Initialize clients Data
         private static void InitializeServerData()
@@ -237,46 +250,42 @@ namespace UGameServer
                     rooms[i].clientsInRoom.Add(clients[ID]);
                     clients[ID].room = rooms[i];
                     Console.WriteLine("Client ID" + ID + " joined in room " + roomName);
-
-
-
-                    Console.WriteLine("User , " + ID + " joined in room " + roomName);
-
-                        for (int x = 0; x < rooms.Count; x++)
+                    for (int x = 0; x < rooms.Count; x++)
+                    {
+                        if (rooms[x].RoomName == roomName)
                         {
-                            if (rooms[x].RoomName == roomName)
+                            foreach (Client player in rooms[x].clientsInRoom)
                             {
-                                foreach (Client player in rooms[x].clientsInRoom)
+                                if (player.isUsed)
                                 {
-                                    if (player.isUsed)
-                                    {
                                     Clients _clients = new Clients();
                                     _clients.clients = GetAllUsersFromRoom(rooms[x]);
                                     //TriggerEvent and send id of player
                                     player.SendEventResult(new EventTrigger()
-                                        {
-
-                                            _event = ResultEvent.UserEnterInRoom,
-                                            eventResultResponse = JsonConvert.SerializeObject(_clients)
-
-                                        });;
-                                    }
-                                    else
                                     {
-                                        Console.WriteLine("error on add player" + player.getID());
-                                    }
 
+                                        _event = ResultEvent.UserEnterInRoom,
+                                        eventResultResponse = JsonConvert.SerializeObject(_clients)
+
+                                    }); ;
                                 }
-                                break;
+                                else
+                                {
+                                    Console.WriteLine("error on add player" + player.getID());
+                                }
+
                             }
+                            UpdateRooms();
+
+                            return;
+
                         }
-                    
 
-                    UpdateRooms();
-
-                    return;
+                    }
                 }
-            }
+
+
+    }
 
             clients[ID].SendEventResult(new EventTrigger()
             {

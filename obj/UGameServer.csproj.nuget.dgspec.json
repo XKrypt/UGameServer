@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Fhayha\\Documents\\GitHub\\UGameServer\\UGameServer.csproj": {}
+    "D:\\GitHub\\UGameServer\\UGameServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Fhayha\\Documents\\GitHub\\UGameServer\\UGameServer.csproj": {
+    "D:\\GitHub\\UGameServer\\UGameServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fhayha\\Documents\\GitHub\\UGameServer\\UGameServer.csproj",
+        "projectUniqueName": "D:\\GitHub\\UGameServer\\UGameServer.csproj",
         "projectName": "UGameServer",
-        "projectPath": "C:\\Users\\Fhayha\\Documents\\GitHub\\UGameServer\\UGameServer.csproj",
+        "projectPath": "D:\\GitHub\\UGameServer\\UGameServer.csproj",
         "packagesPath": "C:\\Users\\Fhayha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fhayha\\Documents\\GitHub\\UGameServer\\obj\\",
+        "outputPath": "D:\\GitHub\\UGameServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Fhayha\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -58,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

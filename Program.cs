@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Threading;
 
 namespace UGameServer
@@ -25,34 +26,39 @@ namespace UGameServer
             mainThread.Start();
           
         }
+        
+        static TimeSpan lastLoopTime;
 
         private static void MainThread()
         {
             Console.WriteLine($"Main thread started. Running at {Constants.TICKS_PER_SEC} ticks per second.");
+            DateTime _nextLoop = DateTime.Now;
 
-            long _nextLoop;
-            
             while (isRunning)
             {
-                Stopwatch watch = Stopwatch.StartNew();
-                bool nextLoop = false;
-                while (!nextLoop)
+                while (_nextLoop < DateTime.Now)
                 {
                     GameLogic.Update();
 
-                    
+                    _nextLoop = _nextLoop.AddMilliseconds(Constants.MS_PER_TICK);
 
-                    if (watch.ElapsedMilliseconds < Constants.TICKS_PER_SEC)
+                    if (_nextLoop > DateTime.Now)
                     {
-                        Thread.Sleep((int)(Constants.TICKS_PER_SEC - watch.ElapsedMilliseconds));
-                        nextLoop = true;
-                    }
-                    else
-                    {
-                        nextLoop = true;
+                        try{
+
+                            Thread.Sleep(_nextLoop - DateTime.Now);
+
+                            lastLoopTime = _nextLoop - DateTime.Now;
+                        }
+                        catch(Exception e){
+                            continue;
+
+                        }
+                      
                     }
                 }
             }
+
         }
     }
 }
